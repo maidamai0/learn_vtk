@@ -5,7 +5,7 @@
 #include <vtkRenderWindow.h>
 #include <vtkRenderer.h>
 
-int main() {
+auto main() -> int {
   const auto cone_source = vtkConeSource::New();
   cone_source->SetHeight(3.0);
   cone_source->SetRadius(1.0);

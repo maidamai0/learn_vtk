@@ -9,6 +9,9 @@ link_libraries(${VTK_LIBRARIES})
 
 file(GLOB sources "*.cpp")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_CLANG_TIDY clang-tidy --fix --fix-errors)
+
 foreach(source ${sources})
     get_filename_component(target ${source} NAME_WLE)
     message("source is ${source}")
