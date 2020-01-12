@@ -1,2 +1,2 @@
 # vtk_textbook_code
-Excisex and examples in VTK Textbook
+Execises and examples in VTK Textbook
