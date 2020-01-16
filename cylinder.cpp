@@ -7,7 +7,7 @@
 #include <vtkInteractorStyleTrackballCamera.h>
 #include <vtkSmartPointer.h>
 
-int main () {
+auto main () -> int {
     const auto cylinder = vtkSmartPointer<vtkCylinderSource>::New();
     cylinder->SetResolution(100);
     

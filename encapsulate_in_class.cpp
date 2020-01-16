@@ -60,7 +60,7 @@ mapper_type mapper_;
 actor_type actor_;
 };
 
-int main () {
+auto main () -> int {
     MyVTKApp app;
     return 0;
 }
