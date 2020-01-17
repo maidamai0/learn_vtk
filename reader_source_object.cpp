@@ -7,14 +7,19 @@
 #include "vtkSTLReader.h"
 #include "vtkSmartPointer.h"
 
-#include <experimental/filesystem>
+#if (_MSC_VER >= 1920)
+#  include <filesystem>
+namespace fs = std::filesystem;
+#else
+#  include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+
 #include <string>
 
 namespace {
 const std::string data_root = "Data/";
 } // namespace
-
-namespace fs = std::experimental::filesystem;
 
 auto main() -> int {
   const auto reader = vtkSmartPointer<vtkSTLReader>::New();

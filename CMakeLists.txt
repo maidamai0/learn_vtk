@@ -2,20 +2,24 @@ cmake_minimum_required(VERSION 3.10)
 
 project(learn_vtk)
 
+set(CMAKE_CXX_STANDARD  17)
+
 find_package(VTK REQUIRED)
 
 include(${VTK_USE_FILE})
 link_libraries(${VTK_LIBRARIES})
 
-file(GLOB sources "*.cpp")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # msvc 2019 enable clang-tidy
 if(MSVC_TOOLSET_VERSION GREATER_EQUAL  142) 
-    set(CMAKE_CXX_CLANG_TIDY clang-tidy --fix --fix-errors)
+    # set(CMAKE_CXX_CLANG_TIDY clang-tidy --fix --fix-errors)
 endif()
 
 # copy data to build directory
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Data)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+file(GLOB sources "*.cpp")
 
 # add etch cpp file to a executable
 foreach(source ${sources})

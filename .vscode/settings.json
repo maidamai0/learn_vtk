@@ -77,5 +77,6 @@
         "xutility": "cpp",
         "*.in": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json"
 }
