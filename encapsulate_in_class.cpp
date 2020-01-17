@@ -1,38 +1,53 @@
-#include <vtkConeSource.h>
-#include <vtkPolyDataMapper.h>
 #include <vtkActor.h>
-#include <vtkRenderer.h>
-#include <vtkRenderWindow.h>
+#include <vtkConeSource.h>
 #include <vtkInteractorStyleTrackballCamera.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkRenderWindow.h>
 #include <vtkRenderWindowInteractor.h>
+#include <vtkRenderer.h>
 #include <vtkSmartPointer.h>
 
-class MyVTKApp {
+namespace {
+// source parameter
+const double source_heiht = 3.0;
+const double source_radius = 1.0;
+const double source_resolution = 100;
 
-    using source_type = vtkSmartPointer<vtkConeSource>;
-    using render_type = vtkSmartPointer<vtkRenderer>;
-    using interactor_type = vtkSmartPointer<vtkRenderWindowInteractor>;
-    using mapper_type = vtkSmartPointer<vtkPolyDataMapper>;
-    using actor_type = vtkSmartPointer<vtkActor>;
-    using render_window_type = vtkSmartPointer<vtkRenderWindow>;
-    using interactor_style_type = vtkSmartPointer<vtkInteractorStyleTrackballCamera>;
+// backgroud color
+const double background_color_r = 0.2;
+const double background_color_g = 0.4;
+const double background_color_b = 0.3;
+
+} // namespace
+
+class MyVTKApp {
+  using source_type = vtkSmartPointer<vtkConeSource>;
+  using render_type = vtkSmartPointer<vtkRenderer>;
+  using interactor_type = vtkSmartPointer<vtkRenderWindowInteractor>;
+  using mapper_type = vtkSmartPointer<vtkPolyDataMapper>;
+  using actor_type = vtkSmartPointer<vtkActor>;
+  using render_window_type = vtkSmartPointer<vtkRenderWindow>;
+  using interactor_style_type
+    = vtkSmartPointer<vtkInteractorStyleTrackballCamera>;
 
 public:
-MyVTKApp() {
+  MyVTKApp() {
     source_ = source_type::New();
-    source_->SetHeight(3.0);
-    source_->SetRadius(1.0);
-    source_->SetResolution(100);
-    
+    source_->SetHeight(source_heiht);
+    source_->SetRadius(source_radius);
+
+    source_->SetResolution(source_resolution);
+
     mapper_ = mapper_type::New();
     mapper_->SetInputConnection(source_->GetOutputPort());
 
     actor_ = actor_type::New();
     actor_->SetMapper(mapper_);
-    
+
     render_ = render_type::New();
     render_->AddActor(actor_);
-    render_->SetBackground(0.2, 0.4, 0.3);
+    render_->SetBackground(background_color_r, background_color_g,
+                           background_color_b);
 
     render_window_ = render_window_type::New();
     render_window_->AddRenderer(render_);
@@ -47,20 +62,19 @@ MyVTKApp() {
     render_window_->Render();
     interactor_->Initialize();
     interactor_->Start();
-
-}
-~MyVTKApp() = default;
+  }
+  ~MyVTKApp() = default;
 
 private:
-source_type source_;
-render_window_type render_window_;
-render_type render_;
-interactor_type interactor_;
-mapper_type mapper_;
-actor_type actor_;
+  source_type source_;
+  render_window_type render_window_;
+  render_type render_;
+  interactor_type interactor_;
+  mapper_type mapper_;
+  actor_type actor_;
 };
 
-auto main () -> int {
-    MyVTKApp app;
-    return 0;
+auto main() -> int {
+  MyVTKApp app;
+  return 0;
 }
