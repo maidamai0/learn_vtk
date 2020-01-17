@@ -14,6 +14,10 @@ if(MSVC_TOOLSET_VERSION GREATER_EQUAL  142)
     set(CMAKE_CXX_CLANG_TIDY clang-tidy --fix --fix-errors)
 endif()
 
+# copy data to build directory
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Data)
+
+# add etch cpp file to a executable
 foreach(source ${sources})
     get_filename_component(target ${source} NAME_WLE)
     message("source is ${source}")
