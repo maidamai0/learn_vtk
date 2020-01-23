@@ -8,8 +8,6 @@
 #include "vtkRenderer.h"
 #include "vtkSmartPointer.h"
 #include "vtkVectorText.h"
-#include "vtkfollower.h"
-#include "vtkvectortext.h"
 #include <iostream>
 
 int main() {
