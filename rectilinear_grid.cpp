@@ -75,7 +75,7 @@ int main() {
 
   vtkNew<vtkRenderer> render;
   render->AddActor(actor);
-  render->SetBackground(colors->GetColor3d("Corsilk").GetData());
+  render->SetBackground(colors->GetColor3d("Cornsilk").GetData());
 
   vtkNew<vtkRenderWindow> window;
   window->AddRenderer(render);
