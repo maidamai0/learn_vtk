@@ -8,7 +8,13 @@ set(VTK_LIBS
     vtkRenderingCore
     vtkRenderingLOD
     vtkRenderingLabel
+    vtkRenderingContext2D
+    vtkRenderingContextOpenGL2
+    vtkRenderingFreeType
+    vtkRenderingGL2PSOpenGL2
+    vtkRenderingOpenGL2
     vtkCommonCore
+    vtkCommonDataModel
     vtkInteractionStyle
     vtkIOParallel
     vtkIOMovie
@@ -17,6 +23,9 @@ set(VTK_LIBS
     vtkFiltersTexture
     vtkFiltersFlowPaths
     vtkGUISupportQt
+    vtkRenderingQt
+    vtkViewsContext2D
+    vtkChartsCore
 )
 
 find_package(VTK COMPONENTS ${VTK_LIBS} REQUIRED)
