@@ -41,8 +41,8 @@ file(GLOB sources "*.cpp")
 # add etch cpp file to a executable
 foreach(source ${sources})
     get_filename_component(target ${source} NAME_WLE)
-    message("source is ${source}")
-    message("target is ${target}")
+    # message("source is ${source}")
+    # message("target is ${target}")
     add_executable(${target} ${source})
 endforeach()
 
