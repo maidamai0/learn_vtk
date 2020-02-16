@@ -75,7 +75,8 @@
         "xtr1common": "cpp",
         "xtree": "cpp",
         "xutility": "cpp",
-        "*.in": "cpp"
+        "*.in": "cpp",
+        "qmainwindow": "cpp"
     },
     "cmake.configureOnOpen": true,
     "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json"

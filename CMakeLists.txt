@@ -4,7 +4,24 @@ project(learn_vtk)
 
 set(CMAKE_CXX_STANDARD  17)
 
-find_package(VTK REQUIRED)
+set(VTK_LIBS
+    vtkRenderingCore
+    vtkRenderingLOD
+    vtkRenderingLabel
+    vtkCommonCore
+    vtkInteractionStyle
+    vtkIOParallel
+    vtkIOMovie
+    vtkInteractionWidgets
+    vtkFiltersProgrammable
+    vtkFiltersTexture
+    vtkFiltersFlowPaths
+    vtkGUISupportQt
+)
+
+find_package(VTK COMPONENTS ${VTK_LIBS} REQUIRED)
+
+message(STATUS "VTK_VERSION: ${VTK_VERSION}")
 
 include(${VTK_USE_FILE})
 link_libraries(${VTK_LIBRARIES})
@@ -28,3 +45,5 @@ foreach(source ${sources})
     message("target is ${target}")
     add_executable(${target} ${source})
 endforeach()
+
+add_subdirectory(qt)
