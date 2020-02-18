@@ -77,7 +77,8 @@
         "xutility": "cpp",
         "*.in": "cpp",
         "qmainwindow": "cpp",
-        "qapplication": "cpp"
+        "qapplication": "cpp",
+        "qgridlayout": "cpp"
     },
     "cmake.configureOnOpen": true,
     "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json"
