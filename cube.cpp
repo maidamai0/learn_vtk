@@ -14,6 +14,8 @@
 #include "vtkType.h"
 #include <array>
 
+#include "viewport_borders.hpp"
+
 int main() {
   std::array<std::array<double, 3>, 8> vertices{{{0, 0, 0},
                                                  {1, 0, 0},
@@ -62,6 +64,9 @@ int main() {
 
   const auto window = vtkSmartPointer<vtkRenderWindow>::New();
   window->AddRenderer(render);
+
+  std::array<double, 3> red_color{1, 0, 0};
+  viewport_borders(render, red_color.data(), true);
 
   const auto interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
   interactor->SetRenderWindow(window);
