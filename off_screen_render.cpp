@@ -13,6 +13,7 @@
 
 #include "platform.h"
 #include <chrono>
+#include <exception>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -42,7 +43,12 @@ int main() {
   vtkNew<vtkPNGWriter> png_writer;
   png_writer->SetInputConnection(to_image->GetOutputPort());
 
-  fs::create_directory(fs::current_path().append("build/image"));
+  try {
+    fs::create_directory(fs::current_path().append("build/image"));
+  } catch (const std::exception& e) {
+    std::cout << e.what() << std::endl;
+    return 1;
+  }
 
   vtkNew<vtkAVIWriter> avi_writer;
   avi_writer->SetRate(60);   // 36 frames in total, 3 seconds.
