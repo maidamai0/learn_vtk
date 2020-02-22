@@ -78,7 +78,8 @@
         "*.in": "cpp",
         "qmainwindow": "cpp",
         "qapplication": "cpp",
-        "qgridlayout": "cpp"
+        "qgridlayout": "cpp",
+        "cassert": "cpp"
     },
     "cmake.configureOnOpen": true,
     "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json"
