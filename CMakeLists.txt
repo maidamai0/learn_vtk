@@ -66,15 +66,20 @@ endif()
 # copy data to build directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-file(GLOB sources "*.cpp")
+file(GLOB sources "*.cpp" "*.cxx")
 
-# add each cpp file to a executable
+# add each cpp/cxx file to a executable
+# add to test for cxx
 foreach(source ${sources})
     get_filename_component(target ${source} NAME_WLE)
     # message("source is ${source}")
     # message("target is ${target}")
     add_executable(${target} ${source})
-    # add_test("${target}_test" ${target})
+
+    get_filename_component(test ${source} EXT)
+    if(${test} STREQUAL ".cxx")
+        add_test("${target}_test" ${target})
+    endif()
 endforeach()
 
 add_test(distance_between_points_test distance_between_points)
