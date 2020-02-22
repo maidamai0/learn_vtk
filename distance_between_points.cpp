@@ -11,6 +11,8 @@
 
 #include "vtkMath.h"
 
+#include "doctest/doctest.h"
+
 #include "cassert"
 #include <array>
 #include <iostream>
@@ -39,8 +41,14 @@ auto main(int argc, char** atgv) -> int {
   pointType p0{0.0, 0.0, 0.0};
   pointType p1{3.0, 0.0, 0.0};
   pointType p2{0.0, 4.0, 0.0};
+}
 
-  distance(p0, p1);
-  distance(p1, p2);
-  distance(p0, p2);
+TEST_CASE("test distance between points") {
+  pointType p0{0.0, 0.0, 0.0};
+  pointType p1{3.0, 0.0, 0.0};
+  pointType p2{0.0, 4.0, 0.0};
+
+  REQUIRE(distance(p0, p1) == 3.0);
+  REQUIRE(distance(p1, p2) == 5.0);
+  REQUIRE(distance(p2, p0) == 4.0);
 }

@@ -42,17 +42,41 @@ if(MSVC_TOOLSET_VERSION GREATER_EQUAL  142)
     # set(CMAKE_CXX_CLANG_TIDY clang-tidy --fix --fix-errors)
 endif()
 
+# enable test
+enable_testing()
+
+# add include path of 3rdparty
+set(3RDPARTY_INCLUDE_PATH
+doctest    
+)
+foreach(dep ${3RDPARTY_INCLUDE_PATH})
+    include_directories(${CMAKE_SOURCE_DIR}/3rdparty/${dep})
+endforeach()
+
+# for doctest
+add_compile_definitions(DOCTEST_CONFIG_IMPLEMENT DOCTEST_CONFIG_SUPER_FAST_ASSERTS)
+
+# disable test code in release version
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    message(STATUS "disable doctest in release version")
+    add_compile_definitions(DOCTEST_CONFIG_DISABLE)
+endif()
+
+
 # copy data to build directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB sources "*.cpp")
 
-# add etch cpp file to a executable
+# add each cpp file to a executable
 foreach(source ${sources})
     get_filename_component(target ${source} NAME_WLE)
     # message("source is ${source}")
     # message("target is ${target}")
     add_executable(${target} ${source})
+    # add_test("${target}_test" ${target})
 endforeach()
+
+add_test(distance_between_points_test distance_between_points)
 
 add_subdirectory(qt)
