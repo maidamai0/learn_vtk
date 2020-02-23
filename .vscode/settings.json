@@ -79,7 +79,15 @@
         "qmainwindow": "cpp",
         "qapplication": "cpp",
         "qgridlayout": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "atomic": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "thread": "cpp",
+        "variant": "cpp"
     },
     "cmake.configureOnOpen": true,
     "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json"
