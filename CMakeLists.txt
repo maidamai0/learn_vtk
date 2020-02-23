@@ -47,11 +47,16 @@ enable_testing()
 
 # add include path of 3rdparty
 set(3RDPARTY_INCLUDE_PATH
-doctest    
+doctest
+fmtlib/include
 )
 foreach(dep ${3RDPARTY_INCLUDE_PATH})
     include_directories(${CMAKE_SOURCE_DIR}/3rdparty/${dep})
 endforeach()
+
+# compile fmtlib
+add_subdirectory(3rdparty/fmtlib)
+link_libraries(fmt::fmt)
 
 # for doctest
 add_compile_definitions(DOCTEST_CONFIG_IMPLEMENT DOCTEST_CONFIG_SUPER_FAST_ASSERTS)
