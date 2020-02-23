@@ -1,3 +1,6 @@
 [submodule "3rdparty/doctest"]
 	path = 3rdparty/doctest
 	url = https://github.com/onqtam/doctest
+[submodule "3rdparty/fmtlib"]
+	path = 3rdparty/fmtlib
+	url = https://github.com/fmtlib/fmt
