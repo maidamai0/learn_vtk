@@ -18,6 +18,7 @@ set(VTK_LIBS
     vtkInteractionStyle
     vtkIOParallel
     vtkIOMovie
+    vtkIOPLY
     vtkInteractionWidgets
     vtkFiltersProgrammable
     vtkFiltersTexture

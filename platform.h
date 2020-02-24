@@ -37,3 +37,7 @@ auto operator<<(std::ostream& os, const pointType& p) -> std::ostream& {
 
   return os;
 }
+
+constexpr auto str2int(const char* str, int h = 0) -> unsigned int {
+  return !str[h] ? 5381 : (str2int(str, h + 1) * 33) ^ str[h];
+}
