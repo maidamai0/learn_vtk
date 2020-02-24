@@ -33,6 +33,7 @@ template <typename READER>
 auto get_polydata(const READER& reader, std::string&& file_name)
   -> vtkSmartPointer<vtkPolyData> {
   reader->SetFileName(file_name.c_str());
+  reader->Update();
   return reader->GetOutput();
 }
 
@@ -92,7 +93,8 @@ auto main(int argc, char** argv) -> int {
   vtkNew<vtkRenderWindowInteractor> interactor;
   interactor->SetRenderWindow(window);
 
-  std::string file_name = "test.sphere";
+  std::string file_name
+    = fs::current_path().append("build/Data/bunny.ply").string();
   if (argc > 1) {
     file_name = argv[1];
   }
