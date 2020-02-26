@@ -16,6 +16,7 @@ set(VTK_LIBS
     vtkCommonCore
     vtkCommonDataModel
     vtkInteractionStyle
+    vtkInteractionImage
     vtkIOParallel
     vtkIOMovie
     vtkIOPLY
