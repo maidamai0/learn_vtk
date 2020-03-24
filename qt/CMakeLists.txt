@@ -7,9 +7,6 @@ foreach(QT_LIB ${QT_LIBS})
     link_libraries(Qt5::${QT_LIB})
 endforeach()
 
-# link_libraries(Qt5::Widgets Qt5::Core)
-
-
 # every sub directory is a qt based project
 file(GLOB subdirs RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
 foreach(subdir ${subdirs})
