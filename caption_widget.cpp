@@ -3,7 +3,9 @@
 #include <vtkCaptionActor2D.h>
 #include <vtkCaptionRepresentation.h>
 #include <vtkCaptionWidget.h>
+#include <vtkFileOutputWindow.h>
 #include <vtkNamedColors.h>
+#include <vtkOutputWindow.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkRenderWindow.h>
 #include <vtkRenderWindowInteractor.h>
@@ -13,6 +15,10 @@
 #include <vtkTextProperty.h>
 
 auto main(int argc, char** argv) -> int {
+  vtkNew<vtkFileOutputWindow> output_file;
+  output_file->SetFileName("vtk.log");
+  vtkOutputWindow::SetInstance(output_file);
+
   vtkNew<vtkSphereSource> sphere_source;
   sphere_source->SetPhiResolution(50);
   sphere_source->SetThetaResolution(50);
@@ -36,6 +42,7 @@ auto main(int argc, char** argv) -> int {
 
   vtkNew<vtkRenderWindowInteractor> interactor;
   interactor->SetRenderWindow(window);
+  interactor->DebugOn();
 
   vtkNew<vtkCaptionRepresentation> caption_rep;
   caption_rep->GetCaptionActor2D()->SetCaption("Test caption");
