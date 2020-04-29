@@ -66,7 +66,11 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_compile_definitions(DOCTEST_CONFIG_DISABLE)
 endif()
 
+# add root path macro to data path
+add_definitions(-DSHADERS_PATH="${CMAKE_CURRENT_SOURCE_DIR}/Data/")
 
+# TODO fix this
+# no longer needed
 # copy data to build directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -103,3 +107,4 @@ endforeach()
 add_test(distance_between_points_test distance_between_points)
 
 add_subdirectory(qt)
+add_subdirectory(poly_data)
