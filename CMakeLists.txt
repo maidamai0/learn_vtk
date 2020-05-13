@@ -108,3 +108,4 @@ add_test(distance_between_points_test distance_between_points)
 
 add_subdirectory(qt)
 add_subdirectory(poly_data)
+add_subdirectory(test)
