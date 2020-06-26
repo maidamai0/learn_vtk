@@ -18,8 +18,8 @@ ShareCamera::ShareCamera() {
   vtkNew<vtkGenericOpenGLRenderWindow> window_left;
   vtkNew<vtkGenericOpenGLRenderWindow> window_right;
 
-  qvtkWidgetLeft->SetRenderWindow(window_left);
-  qvtkWidgetRight->SetRenderWindow(window_right);
+  qvtkWidgetLeft->setRenderWindow(window_left);
+  qvtkWidgetRight->setRenderWindow(window_right);
 
   vtkNew<vtkSphereSource> source;
   source->Update();
@@ -50,8 +50,8 @@ ShareCamera::ShareCamera() {
   render_left->SetBackground(colors->GetColor4d("LightSteelBlue").GetData());
   render_right->SetBackground(colors->GetColor4d("LightSteelBlue").GetData());
 
-  qvtkWidgetLeft->GetRenderWindow()->AddRenderer(render_left);
-  qvtkWidgetRight->GetRenderWindow()->AddRenderer(render_right);
+  qvtkWidgetLeft->renderWindow()->AddRenderer(render_left);
+  qvtkWidgetRight->renderWindow()->AddRenderer(render_right);
 
   render_left->ResetCamera();
   render_right->ResetCamera();
@@ -65,19 +65,19 @@ ShareCamera::ShareCamera() {
 
   connect(this->actionExit, SIGNAL(triggered()), this, SLOT(slotExit()));
 
-  qvtkWidgetLeft->GetRenderWindow()->AddObserver(
+  qvtkWidgetLeft->renderWindow()->AddObserver(
     vtkCommand::ModifiedEvent, this, &ShareCamera::left_modified_handler);
 
-  // qvtkWidgetRight->GetRenderWindow()->AddObserver(
+  // qvtkWidgetRight->renderWindow()->AddObserver(
   //   vtkCommand::ModifiedEvent, this, &ShareCamera::right_modified_handler);
 }
 
 void ShareCamera::left_modified_handler() {
-  qvtkWidgetRight->GetRenderWindow()->Render();
+  qvtkWidgetRight->renderWindow()->Render();
 }
 
 void ShareCamera::right_modified_handler() {
-  qvtkWidgetLeft->GetRenderWindow()->Render();
+  qvtkWidgetLeft->renderWindow()->Render();
 }
 
 void ShareCamera::slotExit() {

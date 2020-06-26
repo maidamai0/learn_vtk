@@ -15,11 +15,11 @@
 #include "qobjectdefs.h"
 #include "ui_share_camera.h"
 
-class ShareCamera : public QMainWindow, private Ui_ShareCameraQt {
+class ShareCamera final: public QMainWindow, private Ui_ShareCameraQt {
   Q_OBJECT
 public:
   ShareCamera();
-  ~ShareCamera() = default;
+  ~ShareCamera() final= default;
 public slots:
   void slotExit();
 
