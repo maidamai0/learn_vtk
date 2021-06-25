@@ -1,5 +1,6 @@
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 set(QT_LIBS Widgets Core Gui Quick Qml)
 find_package(Qt5 COMPONENTS ${QT_LIBS} REQUIRED)
@@ -18,7 +19,13 @@ foreach(subdir ${subdirs})
         file(GLOB src "${subdir}/*.cpp")
         file(GLOB hdr "${subdir}/*.h")
         file(GLOB ui "${subdir}/*.ui")
-        add_executable(${subdir} ${ui} ${src} ${hdr})
+        file(GLOB qml "${subdir}/*.qml")
+        if(qml)
+            execute_process(COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/update_resource.py ${CMAKE_CURRENT_SOURCE_DIR}/${subdir})
+            set(qml "${CMAKE_CURRENT_SOURCE_DIR}/${subdir}/resource.qrc")
+        endif(qml)
+        
+        add_executable(${subdir} WIN32 ${ui} ${src} ${hdr} ${qml})
 
         # link with vtk
         if (VTK_VERSION VERSION_LESS "8.90.0")
