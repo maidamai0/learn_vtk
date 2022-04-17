@@ -19,11 +19,11 @@ int main() {
 
   const auto text_actor = vtkSmartPointer<vtkTextActor>::New();
   text_actor->SetTextScaleModeToProp();
-  text_actor->SetDisplayPosition(90, 50);
+  // text_actor->SetDisplayPosition(90, 50);
   text_actor->SetInput("This is a sphere");
 
-  const auto coor = text_actor->GetPosition2Coordinate();
-  coor->SetCoordinateSystemToNormalizedViewport();
+  const auto coor = text_actor->GetPositionCoordinate();
+  coor->SetCoordinateSystemToNormalizedDisplay();
   coor->SetValue(0.6, 0.1);
 
   const auto text_property = text_actor->GetTextProperty();

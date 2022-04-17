@@ -1,8 +1,6 @@
 {
     "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
-    "cmake.configureOnOpen": true,
-    "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json",
     "cmake.configureArgs": [
-        "-DCMAKE_PREFIX_PATH=c:/Qt/5.15.2/msvc2019_64"
+        "-DCMAKE_PREFIX_PATH=c:/Qt/6.2.4/msvc2019_64/lib/cmake"
     ]
 }
