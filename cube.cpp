@@ -54,6 +54,7 @@ int main() {
   const auto mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
   mapper->SetInputData(cube);
   mapper->SetScalarRange(cube->GetScalarRange());
+  mapper->ScalarVisibilityOff();
 
   const auto actor = vtkSmartPointer<vtkActor>::New();
   actor->SetMapper(mapper);
